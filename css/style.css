@@ -1,4 +1,5 @@
-/* Visual shell only. Level colors, characters, and HUD details come later. */
+
+/* ZERO DAY — Final visual design */
 
 :root {
   --bg: #070b12;
@@ -6,7 +7,10 @@
   --text: #e8f6ff;
   --muted: #8aa0b8;
   --neon: #3dffb0;
+  --cyan: #42edff;
   --line: #1e3a4c;
+  --red: #ff5577;
+  --purple: #b38aff;
 }
 
 * {
@@ -19,41 +23,115 @@ body {
   font-family: "Segoe UI", system-ui, sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at top, #123044 0%, transparent 45%),
+    radial-gradient(
+      ellipse at top,
+      #123044 0%,
+      transparent 50%
+    ),
     var(--bg);
 }
 
 .shell {
-  width: min(1000px, calc(100% - 2rem));
+  width: min(1100px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 1.5rem 0 2.5rem;
+  padding: 2rem 0 1.5rem;
 }
 
-.header h1 {
-  margin: 0.2rem 0;
-  letter-spacing: 0.18em;
-  font-size: 2rem;
+/* HEADER */
+
+.header {
+  padding: 0.5rem 0 1rem;
 }
 
-.eyebrow,
-.tagline {
-  margin: 0;
-  color: var(--muted);
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
 .eyebrow {
+  margin: 0;
   color: var(--neon);
+  font-family: monospace;
   font-size: 0.8rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
+.header h1 {
+  margin: 0.4rem 0;
+  font-family: monospace;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: 0.14em;
+  font-weight: 900;
+  color: var(--text);
+  text-shadow: 0 0 24px #42edff33;
+}
+
+.header h1 span {
+  color: var(--neon);
+  text-shadow: 0 0 25px #3dffb055;
+}
+
+.tagline {
+  margin: 0;
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+}
+
+.system-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--neon);
+  border: 1px solid #245343;
+  background: #102c26;
+  border-radius: 6px;
+  padding: 0.45rem 0.7rem;
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+.status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--neon);
+  box-shadow: 0 0 10px var(--neon);
+  flex-shrink: 0;
+}
+
+/* GAME STAGE */
+
 .stage {
-  margin-top: 1.25rem;
+  margin-top: 0.75rem;
   padding: 0.75rem;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 12px;
+  box-shadow: 0 12px 45px #00000055;
+}
+
+.stage-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.25rem 0.25rem 0.75rem;
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.game-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: #05070c;
 }
 
 #game-canvas {
@@ -64,21 +142,354 @@ body {
   border-radius: 8px;
 }
 
+/* START SCREEN */
+
+.start-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  padding: 1.5rem;
+  text-align: center;
+
+  background:
+    linear-gradient(
+      #071018e8,
+      #071018f5
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0px,
+      transparent 38px,
+      #173c48 39px,
+      #173c48 40px
+    );
+}
+
+.start-screen.hidden {
+  display: none;
+}
+
+.intro-label {
+  margin: 0 0 0.5rem;
+  color: var(--neon);
+  font-family: monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+}
+
+.start-screen h2 {
+  margin: 0;
+  font-family: monospace;
+  font-size: clamp(2.5rem, 6vw, 5rem);
+  letter-spacing: 0.12em;
+  color: var(--neon);
+  text-shadow:
+    0 0 12px #3dffb077,
+    0 0 40px #3dffb033;
+}
+
+.intro-subtitle {
+  margin: 0.2rem 0 0.8rem;
+  color: var(--cyan);
+  font-family: monospace;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+}
+
+.mission-briefing {
+  width: min(580px, 100%);
+  color: #c2d5e5;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.mission-briefing p {
+  margin: 0.5rem 0;
+}
+
+.mission-briefing .briefing-year {
+  color: var(--red);
+  font-family: monospace;
+  font-weight: bold;
+  letter-spacing: 0.15em;
+}
+
+.mission-sectors {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 1rem 0;
+}
+
+.mission-sectors span {
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #101d2b;
+  color: var(--cyan);
+  font-family: monospace;
+  font-size: 0.7rem;
+}
+
+.mission-sectors span:nth-child(2) {
+  color: var(--purple);
+}
+
+.mission-sectors span:nth-child(3) {
+  color: var(--red);
+}
+
+.start-button {
+  border: 1px solid var(--neon);
+  border-radius: 5px;
+  padding: 0.85rem 2rem;
+  background: var(--neon);
+  color: #071018;
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  box-shadow: 0 0 25px #3dffb033;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.start-button:hover:not(:disabled) {
+  background: #9affd7;
+  box-shadow: 0 0 35px #3dffb066;
+}
+
+.start-button:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 5px;
+}
+
+.start-button:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.start-hint {
+  margin: 0.75rem 0 0;
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+/* STATUS PANEL */
+
 .status-panel {
   margin-top: 1rem;
   padding: 1rem 1.1rem;
   background: var(--panel);
   border: 1px solid var(--line);
-  border-radius: 12px;
+  border-radius: 10px;
+}
+
+.status-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
 }
 
 .status-panel h2 {
-  margin: 0 0 0.4rem;
-  font-size: 0.95rem;
+  margin: 0;
+  font-family: monospace;
+  font-size: 0.85rem;
   color: var(--neon);
+  letter-spacing: 0.08em;
 }
 
 .status-panel p {
   margin: 0;
+  color: #c2d5e5;
+  font-family: monospace;
+  font-size: 0.85rem;
   line-height: 1.5;
+}
+
+/* CONTROLS */
+
+.controls-panel {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.controls-panel h2 {
+  margin: 0 0 1rem;
+  color: var(--cyan);
+  font-family: monospace;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.controls-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.75rem;
+}
+
+.control-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  padding: 0.75rem 0.35rem;
+  background: #0a111c;
+  border: 1px solid #1a2b3d;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.key-group {
+  display: flex;
+  gap: 0.3rem;
+}
+
+kbd {
+  display: inline-block;
+  min-width: 30px;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid #355268;
+  border-bottom-width: 3px;
+  border-radius: 4px;
+  background: #192b3d;
+  color: var(--text);
+  font-family: monospace;
+  font-size: 0.85rem;
+}
+
+.control-item p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.75rem;
+}
+
+/* MISSION CARDS */
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.info-card {
+  padding: 1.1rem;
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--neon);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.info-card:nth-child(2) {
+  border-top-color: var(--purple);
+}
+
+.info-card:nth-child(3) {
+  border-top-color: var(--red);
+}
+
+.card-number {
+  margin: 0;
+  color: var(--neon);
+  font-family: monospace;
+  font-size: 0.8rem;
+}
+
+.info-card:nth-child(2) .card-number {
+  color: var(--purple);
+}
+
+.info-card:nth-child(3) .card-number {
+  color: var(--red);
+}
+
+.info-card h3 {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}
+
+.info-card p:last-child {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* FOOTER */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 0.7rem;
+}
+
+.footer p {
+  margin: 0;
+}
+
+/* RESPONSIVE LAYOUT */
+
+@media (max-width: 750px) {
+
+  .controls-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .start-screen {
+    padding: 0.75rem;
+    overflow-y: auto;
+    justify-content: flex-start;
+  }
+
+  .start-screen h2 {
+    font-size: 2rem;
+  }
+
+  .mission-briefing {
+    font-size: 0.75rem;
+  }
+
+  .intro-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .mission-sectors {
+    margin: 0.5rem 0;
+  }
+
+  .start-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .stage-header {
+    font-size: 0.6rem;
+  }
 }
