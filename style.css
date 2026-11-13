@@ -1,0 +1,84 @@
+/* Visual shell only. Level colors, characters, and HUD details come later. */
+
+:root {
+  --bg: #070b12;
+  --panel: #101826;
+  --text: #e8f6ff;
+  --muted: #8aa0b8;
+  --neon: #3dffb0;
+  --line: #1e3a4c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top, #123044 0%, transparent 45%),
+    var(--bg);
+}
+
+.shell {
+  width: min(1000px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 1.5rem 0 2.5rem;
+}
+
+.header h1 {
+  margin: 0.2rem 0;
+  letter-spacing: 0.18em;
+  font-size: 2rem;
+}
+
+.eyebrow,
+.tagline {
+  margin: 0;
+  color: var(--muted);
+}
+
+.eyebrow {
+  color: var(--neon);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stage {
+  margin-top: 1.25rem;
+  padding: 0.75rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+#game-canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #05070c;
+  border-radius: 8px;
+}
+
+.status-panel {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.status-panel h2 {
+  margin: 0 0 0.4rem;
+  font-size: 0.95rem;
+  color: var(--neon);
+}
+
+.status-panel p {
+  margin: 0;
+  line-height: 1.5;
+}

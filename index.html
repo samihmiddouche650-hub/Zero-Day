@@ -1,0 +1,201 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ZERO DAY — A cybersecurity platform game. Infiltrate the network, recover three security keys, and defeat NULL.">
+  <title>ZERO DAY | Byte vs. NULL</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <main class="shell">
+
+    <header class="header">
+
+      <div class="header-top">
+        <p class="eyebrow">
+          ETHICAL HACKING // CYBERSECURITY PROJECT
+        </p>
+
+        <span class="system-badge">
+          <span class="status-dot"></span>
+          SYSTEM ONLINE
+        </span>
+      </div>
+
+      <h1>ZERO<span> DAY</span></h1>
+
+      <p class="tagline">
+        BYTE VS. NULL // THE FINAL NETWORK DEFENSE
+      </p>
+
+    </header>
+
+    <section class="stage" aria-label="Game screen">
+
+      <div class="stage-header">
+        <span>NETWORK SIMULATION // 2099</span>
+        <span>CLASSIFIED MISSION</span>
+      </div>
+
+      <div class="game-container">
+
+        <canvas id="game-canvas" width="960" height="540">
+          Your browser needs canvas support to run ZERO DAY.
+        </canvas>
+
+        <div id="start-screen" class="start-screen">
+
+          <p class="intro-label">
+            // INCOMING TRANSMISSION //
+          </p>
+
+          <h2>ZERO DAY</h2>
+
+          <p class="intro-subtitle">
+            BYTE VS. NULL
+          </p>
+
+          <div class="mission-briefing">
+
+            <p class="briefing-year">YEAR 2099</p>
+
+            <p>
+              A rogue artificial intelligence known as NULL
+              has corrupted the city's entire computer network.
+            </p>
+
+            <p>
+              You are Byte, the last uncorrupted program.
+              Infiltrate three dangerous sectors, recover the
+              security keys, and shut down NULL before the
+              city falls into permanent darkness.
+            </p>
+
+          </div>
+
+          <div class="mission-sectors">
+            <span>01 / FIREWALL BREACH</span>
+            <span>02 / THE DARK WEB</span>
+            <span>03 / THE ZERO DAY</span>
+          </div>
+
+          <button id="start-button" class="start-button" disabled>
+            INITIALIZING SYSTEM...
+          </button>
+
+          <p class="start-hint">
+            PRESS ENTER TO BEGIN
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="status-panel" aria-live="polite">
+
+      <div class="status-heading">
+        <span class="status-dot"></span>
+        <h2>SYSTEM STATUS</h2>
+      </div>
+
+      <p id="status-message">
+        Waiting to load Python...
+      </p>
+
+    </section>
+
+    <section class="controls-panel">
+
+      <h2>MISSION CONTROLS</h2>
+
+      <div class="controls-grid">
+
+        <div class="control-item">
+          <div class="key-group">
+            <kbd>A</kbd>
+            <kbd>D</kbd>
+          </div>
+          <p>Move left / right</p>
+        </div>
+
+        <div class="control-item">
+          <div class="key-group">
+            <kbd>←</kbd>
+            <kbd>→</kbd>
+          </div>
+          <p>Alternative movement</p>
+        </div>
+
+        <div class="control-item">
+          <kbd>SPACE</kbd>
+          <p>Jump</p>
+        </div>
+
+        <div class="control-item">
+          <kbd>ENTER</kbd>
+          <p>Start / Next sector</p>
+        </div>
+
+        <div class="control-item">
+          <kbd>R</kbd>
+          <p>Restart game</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="info-grid">
+
+      <article class="info-card">
+        <p class="card-number">01</p>
+        <h3>Firewall Breach</h3>
+        <p>
+          Bypass firewall defenses and recover
+          the first security key.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="card-number">02</p>
+        <h3>The Dark Web</h3>
+        <p>
+          Evade malware bots and navigate elevated
+          platforms to recover key 02.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <p class="card-number">03</p>
+        <h3>The Zero Day</h3>
+        <p>
+          Infiltrate NULL's mainframe, recover the
+          final key, and restore the network.
+        </p>
+      </article>
+
+    </section>
+
+    <footer class="footer">
+
+      <p>ZERO DAY // ETHICAL HACKING PROJECT</p>
+
+      <p>
+        Built with Python, JavaScript, HTML, CSS &amp; Pyodide
+      </p>
+
+    </footer>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.27.7/full/pyodide.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
